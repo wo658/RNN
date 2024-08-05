@@ -1,8 +1,5 @@
-#include <iostream>
-#include <fstream>
-#include <string>
+#include "getFile.h"
 
-using namespace std;
 
 
 
@@ -11,7 +8,8 @@ using namespace std;
 
 // 1 . RNN Dataset 읽어 와서 각 언어별로 분류하기
 
-// 1 - 1 . 
+// 1 - 1 . <String > Vector  txtFiles < ---- String 자료형 벡터 ( 특정 디렉토리 내 File.txt 목록 ) O
+// 1 - 2 각 파일 디렉토리내 문자들 담기
 // 2 . RNN 구조 구축
 // 2 - 1 . 
 
@@ -21,20 +19,27 @@ using namespace std;
 
 int main()
 {
-	string line;
-	ifstream file("C:\\Users\\ecmdev\\Documents\\visual studio 2015\\Projects\\RNN\\names\\Arabic.txt");
+	wstring directory = L"C:\\Users\\ecmdev\\Documents\\Visual Studio 2015\\Projects\\RNN\\names";
+	std::vector<std::vector<std::wstring>> txtFiles = getTxtFilesInDirectory(directory);
 
-	if (file.is_open()) {
-		while (getline(file, line)) {
-			cout << line << endl;
-		}
-		file.close();
-	}
-	else {
-		cout << " XX ";
-		return 1;
 
-	}
+	/*
+	for (auto e : txtFiles.at(0))
+		wcout << e << endl;
+	*/
+
+	wcout << txtFiles.size();
+
+	for (auto e : txtFiles)
+		wcout << e.at(0) << endl;
+
+	// fileList = 18개의 언어로 된 텍스트 모음
+	// 벡터의 첫 차원에 categori -> 이후 data
+
+
+
+
+
 	return 0;
 
 
